@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter Symptoms</title>
+</head>
+<body>
+    <h1>Enter Symptoms</h1>
+    <form action="/predict" method="POST">
+        <input type="hidden" name="num_symptoms" value="{{ num_symptoms }}">
+        {% for i in range(num_symptoms) %}
+        <label for="symptom{{ i+1 }}">Symptom {{ i+1 }}:</label>
+        <select id="symptom{{ i+1 }}" name="symptom{{ i+1 }}">
+            {% for symptom in all_symptoms %}
+            <option value="{{ symptom }}">{{ symptom }}</option>
+            {% endfor %}
+        </select><br>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
