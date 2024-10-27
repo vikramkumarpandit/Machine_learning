@@ -54,29 +54,24 @@ Description: Receives symptoms and returns predicted diseases, confidence scores
   }
 
 **Setup and Installation**
-
 1. Clone the Repository
 {
 git clone https://github.com/yourusername/yourprojectname.git
 cd yourprojectname
 }
-
 2.Create and Activate a Virtual Environment
 {
 python -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 }
-
 3.Install Dependencies
 {
 pip install -r requirements.txt
 }
-
 4.Run the Application
 {
 python application.py
 }
-
 5. Access the Application: Open http://127.0.0.1:5000 in your browser.
 
 **Future Enhancements**
