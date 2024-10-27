@@ -1,12 +1,81 @@
 # Disease Prediction and Doctor Recommendation System
 
--> Overview
-This project is a Flask-based application that predicts diseases based on user-provided symptoms. Once a disease is predicted, 
-the system suggests a specialist doctor and provides a brief description of the disease. 
-It integrates multiple machine learning (ML) models to improve prediction accuracy and robustness.
+## Overview
 
-**Project Structure**
+This project is a Flask-based web application that predicts potential diseases based on symptoms provided by the user. After identifying the possible disease, the application recommends a specialist and provides a description of the condition. The system uses an ensemble of machine learning models for reliable predictions, drawing on data from an internal dataset.
 
+---
+
+## Key Features
+
+- **Symptom-Based Disease Prediction**: Predicts diseases using symptoms input by the user through an ensemble of machine learning models.
+- **Doctor Recommendation**: Provides a recommendation for a relevant specialist doctor based on the predicted disease.
+- **Disease Description**: Includes brief descriptions of predicted diseases for user education and awareness.
+
+---
+
+## Machine Learning Model Design
+
+The system employs multiple machine learning models to enhance accuracy. These models are trained on a dataset with symptom-disease mappings:
+
+- **Logistic Regression**: Used for its interpretability and efficiency on smaller datasets.
+- **Decision Tree**: Provides a simple decision-making framework, easy to visualize and understand.
+- **Random Forest**: An ensemble of decision trees to improve accuracy and reduce overfitting.
+- **Support Vector Machine (SVM)**: Effective for high-dimensional space classification.
+- **Naive Bayes**: A probabilistic model suitable for categorical data.
+- **K-Nearest Neighbors (KNN)**: A straightforward, non-parametric model for classification.
+
+Each model contributes its prediction, and the final disease prediction is derived from a consensus of these models.
+
+---
+
+## API Design
+
+### Endpoint: `POST /predict`
+
+- **Description**: Receives symptoms in JSON format and returns potential diseases with prediction confidence, a recommended specialist, and a disease description.
+- **Request Format**:
+    ```json
+    {
+      "symptoms": ["chills", "knee_pain", "acidity"]
+    }
+    ```
+- **Response Format**:
+    ```json
+    [
+      {
+        "Disease": "Influenza",
+        "Chances": 85.0,
+        "Specialist": "General Physician",
+        "Description": "A viral infection affecting the respiratory system."
+      },
+      ...
+    ]
+    ```
+- **Example**:
+    - **Request**:
+      ```json
+      {
+        "symptoms": ["fever", "headache", "nausea"]
+      }
+      ```
+    - **Response**:
+      ```json
+      [
+        {
+          "Disease": "Malaria",
+          "Chances": 78.5,
+          "Specialist": "Infectious Disease Specialist",
+          "Description": "A disease caused by a plasmodium parasite, transmitted by mosquito bites."
+        }
+      ]
+      ```
+
+---
+
+## Project Structure
+
+```plaintext
 .
 ├── application.py            # Main Flask application
 ├── templates/
@@ -19,70 +88,10 @@ It integrates multiple machine learning (ML) models to improve prediction accura
 ├── requirements.txt          # Python dependencies
 └── README.md                 # Project documentation
 
-**Key Features**
-Symptom-Based Prediction: Predicts diseases based on symptoms using multiple ML models.
-Doctor Recommendation: Recommends a specialist based on predicted disease.
-Disease Description: Provides a brief description for each predicted disease.
 
-**Machine Learning Models**
-Uses an ensemble approach with multiple models to predict diseases:
 
-Logistic Regression
-Decision Tree
-Random Forest
-Support Vector Machine (SVM)
-Naive Bayes
-K-Nearest Neighbors (KNN)
-Each model provides a prediction, and results are aggregated to determine the most likely disease.
 
-**API Design**
 
-Endpoint: POST /predict
-Description: Receives symptoms and returns predicted diseases, confidence scores, recommended doctors, and disease descriptions.
-
-->Input Format:
-{
-  "symptoms": ["chills", "knee_pain", "acidity"]
-}
-
-->Response Format:
-  {
-    "Disease": "Influenza",
-    "Chances": 85.0,
-    "Specialist": "General Physician",
-    "Description": "A viral infection affecting the respiratory system."
-  }
-
-**Setup and Installation**
-1. Clone the Repository
-{
-git clone https://github.com/yourusername/yourprojectname.git
-cd yourprojectname
-}
-
-2.Create and Activate a Virtual Environment
-{
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-}
-
-3.Install Dependencies
-{
-pip install -r requirements.txt
-}
-
-4.Run the Application
-{
-python application.py
-}
-
-5. Access the Application: Open http://127.0.0.1:5000 in your browser.
-
-**Future Enhancements**
-
-Additional Symptoms and Diseases: Expanding the dataset for broader predictions.
-Improved UI: A more interactive and user-friendly frontend.
-Database Integration: Logging and analysis of user inputs and predictions.
 
 
 
